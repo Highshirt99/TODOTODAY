@@ -17,11 +17,6 @@ addTodo:(state, action) => {
 deleteTodo:(state, action) => {
   state.todos =  state.todos.filter(item => item.id !== action.payload)
 },
-markCompleted:(state, action) => {
-state.todos.push(action.payload)
-
-},
-
 clearCompletedTodos:(state) => {
   state.todos = []
 }
