@@ -1,0 +1,25 @@
+@import url("https://fonts.cdnfonts.com/css/josefin-sans");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components{
+    .todoLi{
+       @apply  flex justify-start gap-4 min-h-max relative
+       items-center  lg:h-12  
+       h-4 w-[310px] lg:w-[550px] cursor-pointer dark:text-white
+       p-6 border-b border-b-gray-300 dark:border-b-gray-500
+    }
+.checkImg{
+  @apply  w-5 h-5 rounded-[50%] border
+    border-gray-500 flex justify-center items-center
+}
+    .span{
+        @apply cursor-pointer hover:text-black dark:hover:text-white duration-300
+    }
+}
+.scrollbar-hide::-webkit-scrollbar{
+    display: none;
+}
