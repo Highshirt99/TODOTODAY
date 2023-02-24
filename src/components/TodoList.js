@@ -3,17 +3,23 @@ import icon from "../images/icon-cross.svg";
 import check from "../images/icon-check.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
-import { clearCompletedTodos, deleteTodo } from "../reduxStore/todoSlice";
+import {
+  clearCompletedTodos,
+  deleteTodo,
+  markCompleted,
+} from "../reduxStore/todoSlice";
 
 function TodoList() {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState("");
 
   const todoItems = useSelector((state) => state.todo.todos);
-  const dispatch = useDispatch()
+  const completed = useSelector(state => state.completed )
+  const dispatch = useDispatch();
 
   // const handleCheck = (e) => {
-  //   setChecked(!e.completed);
-  //   console.log(e.completed)
+  //   dispatch(markCompleted(e))
+  //   setChecked(e);
+  //   console.log(checked)
   // };
 
   return (
@@ -26,12 +32,11 @@ function TodoList() {
         <ul className=" grid grid-cols-1 w-[310px] lg:w-[550px] scrollbar-hide overflow-y-scroll">
           {todoItems.map((item) => (
             <motion.li
-            initial = {{x:-20, opacity: 0}}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{
-              x: { type: "spring", stiffness: 120 },
-            }}
-
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{
+                x: { type: "spring", stiffness: 120 },
+              }}
               key={item.id}
               className={`${
                 checked ? "line-through text-gray-400 dark:text-gray-400" : ""
@@ -62,17 +67,14 @@ function TodoList() {
         >
           <span>{todoItems.length} items left</span>
           <div className="lg:flex lg:gap-4 hidden ">
-            <span className="span">
-              All
-            </span>
-            <span className="span">
-              Active
-            </span>
-            <span className="span">
-              Completed
-            </span>
+            <span className="span">All</span>
+            <span className="span">Active</span>
+            <span className="span">Completed</span>
           </div>
-          <span className="span" onClick={() => dispatch(clearCompletedTodos())}>
+          <span
+            className="span"
+            onClick={() => dispatch(clearCompletedTodos())}
+          >
             Clear completed
           </span>
         </div>
@@ -81,15 +83,9 @@ function TodoList() {
         className=" flex justify-center gap-4 items-center text-gray-500
          lg:hidden  h-4 bg-white dark:bg-desaturatedBlue p-6 mt-5 rounded-[4px]"
       >
-        <span className="span">
-          All
-        </span>
-        <span className="span">
-          Active
-        </span>
-        <span className="span">
-          Completed
-        </span>
+        <span className="span">All</span>
+        <span className="span">Active</span>
+        <span className="span">Completed</span>
       </div>
 
       <div className="text-center mt-6 p-4 text-gray-500">

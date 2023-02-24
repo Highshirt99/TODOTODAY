@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-  todos: []
+  todos: [],
+  
 }
 
 export const todoSlice = createSlice({
@@ -16,12 +17,17 @@ addTodo:(state, action) => {
 deleteTodo:(state, action) => {
   state.todos =  state.todos.filter(item => item.id !== action.payload)
 },
+markCompleted:(state, action) => {
+state.todos.push(action.payload)
+
+},
+
 clearCompletedTodos:(state) => {
   state.todos = []
 }
 }})
 
 // Action creators are generated for each case reducer function
-export const { addTodo, deleteTodo, clearCompletedTodos } = todoSlice.actions
+export const { addTodo, deleteTodo, clearCompletedTodos, markCompleted } = todoSlice.actions
 
 export default todoSlice.reducer

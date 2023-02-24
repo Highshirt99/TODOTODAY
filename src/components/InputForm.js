@@ -11,7 +11,7 @@ function InputForm() {
    if(e.key === "Enter") {dispatch(addTodo({
       title: task,
       id: Math.random(),
-      checked: false
+      completed: false
       
     })) }
   }
