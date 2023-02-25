@@ -4,23 +4,24 @@ import check from "../images/icon-check.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import {
+  changeTodoStatus,
   clearCompletedTodos,
   deleteTodo,
-  markCompleted,
+  showActiveTodos,
+  showAllTodos,
+  showCompletedTodos,
 } from "../reduxStore/todoSlice";
 
 function TodoList() {
-  const [checked, setChecked] = useState("");
+// const[btnActive, setBtnActive] = useState(false)
 
-  const todoItems = useSelector((state) => state.todo.todos);
-  const completed = useSelector(state => state.completed )
+//  const toggleBtnActive = () => {
+//   setBtnActive(!btnActive)
+//  }
+  const todoItems = useSelector((state) => state.todoItem.todos);
+  const activeTodoItems = todoItems.filter(item => item.status === "active")
   const dispatch = useDispatch();
 
-  // const handleCheck = (e) => {
-  //   dispatch(markCompleted(e))
-  //   setChecked(e);
-  //   console.log(checked)
-  // };
 
   return (
     <div
@@ -39,17 +40,24 @@ function TodoList() {
               }}
               key={item.id}
               className={`${
-                checked ? "line-through text-gray-400 dark:text-gray-400" : ""
+                item.status === "completed"
+                  ? "line-through text-gray-400 dark:text-gray-400"
+                  : ""
               } todoLi
 `}
+onClick={() => dispatch(changeTodoStatus(item.id))}
             >
               <div
-                onClick={() => setChecked(!checked)}
+              
                 className={`${
-                  checked ? "bg-gradient-to-t from-bgFrom to-bgTo" : ""
+                  item.status === "completed"
+                    ? "bg-gradient-to-t from-bgFrom to-bgTo"
+                    : ""
                 } checkImg`}
               >
-                {checked ? <img src={check} alt="" /> : null}
+                {item.status === "completed" ? (
+                  <img src={check} alt="" />
+                ) : null}
               </div>
               {item.title}
               <img
@@ -65,11 +73,20 @@ function TodoList() {
           className=" flex justify-between p-6
          lg:text-sm items-center text-gray-500 h-4 "
         >
-          <span>{todoItems.length} items left</span>
+          <span>{activeTodoItems.length} items left</span>
           <div className="lg:flex lg:gap-4 hidden ">
-            <span className="span">All</span>
-            <span className="span">Active</span>
-            <span className="span">Completed</span>
+            <span className="span active:text-brightBlue" onClick={() => dispatch(showAllTodos()) }>
+              All
+            </span>
+            <span className="span" onClick={() => dispatch(showActiveTodos())}>
+              Active
+            </span>
+            <span
+              className="span"
+              onClick={() => dispatch(showCompletedTodos())}
+            >
+              Completed
+            </span>
           </div>
           <span
             className="span"
@@ -83,9 +100,15 @@ function TodoList() {
         className=" flex justify-center gap-4 items-center text-gray-500
          lg:hidden  h-4 bg-white dark:bg-desaturatedBlue p-6 mt-5 rounded-[4px]"
       >
-        <span className="span">All</span>
-        <span className="span">Active</span>
-        <span className="span">Completed</span>
+        <span className="span" onClick={() => dispatch(showAllTodos())}>
+          All
+        </span>
+        <span className="span" onClick={() => dispatch(showActiveTodos())}>
+          Active
+        </span>
+        <span className="span" onClick={() => dispatch(showCompletedTodos())}>
+          Completed
+        </span>
       </div>
 
       <div className="text-center mt-6 p-4 text-gray-500">

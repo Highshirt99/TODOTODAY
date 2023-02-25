@@ -1,20 +1,22 @@
-import React, {useState} from "react";
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addTodo } from "../reduxStore/todoSlice";
 
 function InputForm() {
-  const [task, setTask] = useState("")
+  const [task, setTask] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const handleKeyDown = (e) =>  {
-   if(e.key === "Enter") {dispatch(addTodo({
-      title: task,
-      id: Math.random(),
-      completed: false
-      
-    })) }
-  }
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      dispatch(
+        addTodo({
+          title: task,
+          id: Math.random()
+        })
+      );
+    }
+  };
 
   return (
     <div
@@ -32,8 +34,8 @@ function InputForm() {
         bg-transparent border-none dark:text-white
        placeholder:font-bodyFont outline-none"
         placeholder="Create a new todo."
-        onChange={e => setTask(e.target.value)}
-       onKeyDown = {handleKeyDown}
+        onChange={(e) => setTask(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
     </div>
   );
