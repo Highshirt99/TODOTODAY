@@ -26,21 +26,21 @@ function App() {
   return (
     <div className=" bg-veryLightGrayishBlue dark:bg-darkBlue min-h-screen">
       <div className="relative">
-        <div className="lg:hidden flex justify-center w-screen object-cover">
+        <div className="lg:hidden md:hidden sm:hidden flex justify-center w-screen object-cover">
           <img src={darkTheme ? bgMobileDark : bgMobile} alt="" />
         </div>
-        <div className="hidden lg:block ">
-          <img src={darkTheme ? bgDesktopDark : bgDesktop} alt="" />
+        <div className="hidden sm:block md:block lg:block  w-screen object-cover">
+          <img src={darkTheme ? bgDesktopDark : bgDesktop} alt=""/>
         </div>
 
         <div
-          className="lg:w-[600px] absolute top-[20%] left-0 right-0 flex justify-between lg:left-1/2  lg:translate-x-[-50%]
-        lg:translate-y-[-50%]
+          className="lg:w-[600px]  absolute top-[20%] left-0 right-0 flex justify-between lg:left-1/2  lg:translate-x-[-50%]
+        lg:translate-y-[-50%] xmd:left-4 xmd:right-4
          px-6"
         >
           <h1
             className=" text-white font-bodyFont tracking-[0.8rem]
-          text-base text-[1.5rem] lg:text-[2rem]
+          text-base text-[1.5rem] lg:text-[2rem] sm:text-[1.4rem] md:text-[1.4rem]
           font-bold
           "
           >
@@ -51,7 +51,7 @@ function App() {
             src={darkTheme ? iconDark : iconLight}
             alt=""
             onClick={changeTheme}
-            className="w-[20px] h-full object-cover lg:w-[35px] cursor-pointer"
+            className="w-[20px] h-full object-cover lg:w-[35px] md:w-[30px] sm:w-[30px] cursor-pointer"
           />
         </div>
         <InputForm />

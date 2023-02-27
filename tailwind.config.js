@@ -5,7 +5,10 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-  
+      screens: {
+        xmd: "400px",
+      },
+
       colors: {
         bgFrom: "hsl(192, 100%, 67%)",
         bgTo: "hsl(280, 87%, 65%)",
@@ -33,5 +36,6 @@ module.exports = {
       },
     },
   },
+
   plugins: [],
 };

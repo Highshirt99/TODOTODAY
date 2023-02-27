@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   todos: [],
   todo: null,
-  activeTodos: null,
-  completedTodos: null,
+  activeTodos: [],
+  completedTodos: [],
 };
 
 export const todoSlice = createSlice({
@@ -13,6 +13,11 @@ export const todoSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       state.todos.unshift({ ...action.payload, status: "active" });
+
+      // state.activeTodos = state.todos.filter(
+      //   (item) => item.status === "active"
+      // );
+     
     },
 
     deleteTodo: (state, action) => {
@@ -27,23 +32,22 @@ export const todoSlice = createSlice({
 
     changeTodoStatus: (state, action) => {
       state.todo = state.todos.filter((item) => item.id === action.payload);
-      state.todos = state.todos.filter((item) => item.id !== action.payload);
-
+      
       if (state.todo[0].status === "active") {
         state.todo[0].status = "completed";
       } else if (state.todo[0].status === "completed") {
         state.todo[0].status = "active";
       }
 
-      state.todos.push(state.todo[0]);
-
+     
       state.activeTodos = state.todos.filter(
         (item) => item.status === "active"
       );
+
       state.completedTodos = state.todos.filter(
         (item) => item.status === "completed"
       );
-      console.log(state.completedTodos);
+      
     },
     showAllTodos: (state) => {
       state.todos = state.activeTodos.concat(state.completedTodos);
@@ -55,7 +59,9 @@ export const todoSlice = createSlice({
       state.todos = state.completedTodos;
     },
     clearCompletedTodos: (state) => {
-      state.todos = state.todos.filter((item) => item.status === "active");
+      state.completedTodos = []
+      state.todos = state.activeTodos
+     
     },
   },
 });

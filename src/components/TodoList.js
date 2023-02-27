@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import icon from "../images/icon-cross.svg";
 import check from "../images/icon-check.svg";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,15 +13,27 @@ import {
 } from "../reduxStore/todoSlice";
 
 function TodoList() {
-// const[btnActive, setBtnActive] = useState(false)
+  const [activeButton, setActiveButton] = useState("");
 
-//  const toggleBtnActive = () => {
-//   setBtnActive(!btnActive)
-//  }
   const todoItems = useSelector((state) => state.todoItem.todos);
-  const activeTodoItems = todoItems.filter(item => item.status === "active")
+  const activeTodoItems = todoItems.filter((item) => item.status === "active");
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setActiveButton("All");
+    dispatch(showAllTodos());
+  }, []);
+
+  const handleButtonClick = (e) => {
+    setActiveButton(e.target.id);
+    if (e.target.id === "All") {
+      dispatch(showAllTodos());
+    } else if (e.target.id === "Active") {
+      dispatch(showActiveTodos());
+    } else if (e.target.id === "Completed") {
+      dispatch(showCompletedTodos());
+    }
+  };
 
   return (
     <div
@@ -30,7 +42,7 @@ function TodoList() {
       "
     >
       <div className="flex flex-col rounded-[5px]  bg-white max-h-[300px] dark:bg-desaturatedBlue">
-        <ul className=" grid grid-cols-1 w-[310px] lg:w-[550px] scrollbar-hide overflow-y-scroll">
+        <ul className=" grid grid-cols-1 w-[310px] lg:w-[550px] md:w-[450px] sm:w-[450px] xmd:w-[350px] scrollbar-hide overflow-y-scroll">
           {todoItems.map((item) => (
             <motion.li
               initial={{ x: -20, opacity: 0 }}
@@ -45,10 +57,9 @@ function TodoList() {
                   : ""
               } todoLi
 `}
-onClick={() => dispatch(changeTodoStatus(item.id))}
+              onClick={() => dispatch(changeTodoStatus(item.id))}
             >
               <div
-              
                 className={`${
                   item.status === "completed"
                     ? "bg-gradient-to-t from-bgFrom to-bgTo"
@@ -75,22 +86,37 @@ onClick={() => dispatch(changeTodoStatus(item.id))}
         >
           <span>{activeTodoItems.length} items left</span>
           <div className="lg:flex lg:gap-4 hidden ">
-            <span className="span active:text-brightBlue" onClick={() => dispatch(showAllTodos()) }>
+            <span
+              className={`span ${
+                activeButton === "All" ? "text-brightBlue" : ""
+              }`}
+              id="All"
+              onClick={(e) => handleButtonClick(e)}
+            >
               All
             </span>
-            <span className="span" onClick={() => dispatch(showActiveTodos())}>
+            <span
+              className={`span ${
+                activeButton === "Active" ? "text-BrightBlue" : ""
+              }`}
+              id="Active"
+              onClick={(e) => handleButtonClick(e)}
+            >
               Active
             </span>
             <span
-              className="span"
-              onClick={() => dispatch(showCompletedTodos())}
+              className={`span ${
+                activeButton === "Completed" ? "text-BrightBlue" : ""
+              }`}
+              id="Completed"
+              onClick={(e) => handleButtonClick(e)}
             >
               Completed
             </span>
           </div>
           <span
             className="span"
-            onClick={() => dispatch(clearCompletedTodos())}
+            onClick={() => dispatch(clearCompletedTodos()) }
           >
             Clear completed
           </span>
@@ -100,18 +126,34 @@ onClick={() => dispatch(changeTodoStatus(item.id))}
         className=" flex justify-center gap-4 items-center text-gray-500
          lg:hidden  h-4 bg-white dark:bg-desaturatedBlue p-6 mt-5 rounded-[4px]"
       >
-        <span className="span" onClick={() => dispatch(showAllTodos())}>
+        <span
+          className={`span ${activeButton === "All" ? "text-brightBlue" : ""}`}
+          id="All"
+          onClick={(e) => handleButtonClick(e)}
+        >
           All
         </span>
-        <span className="span" onClick={() => dispatch(showActiveTodos())}>
+        <span
+          className={`span ${
+            activeButton === "Active" ? "text-brightBlue" : ""
+          }`}
+          id="Active"
+          onClick={(e) => handleButtonClick(e)}
+        >
           Active
         </span>
-        <span className="span" onClick={() => dispatch(showCompletedTodos())}>
+        <span
+          className={`span ${
+            activeButton === "Completed" ? "text-brightBlue" : ""
+          }`}
+          id="Completed"
+          onClick={(e) => handleButtonClick(e)}
+        >
           Completed
         </span>
       </div>
 
-      <div className="text-center mt-6 p-4 text-gray-500">
+      <div className="text-center mt-10 p-4 text-gray-500">
         Drag and drop to reorder list.
       </div>
     </div>
