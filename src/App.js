@@ -26,10 +26,10 @@ function App() {
   return (
     <div className=" bg-veryLightGrayishBlue dark:bg-darkBlue min-h-screen">
       <div className="relative">
-        <div className="lg:hidden md:hidden sm:hidden flex justify-center w-screen object-cover">
+        <div className="lg:hidden mdl:hidden md:hidden sm:hidden flex justify-center w-screen object-cover">
           <img src={darkTheme ? bgMobileDark : bgMobile} alt="" />
         </div>
-        <div className="hidden sm:block md:block lg:block  w-screen object-cover">
+        <div className="hidden mdl:block sm:block md:block lg:block  w-screen object-cover">
           <img src={darkTheme ? bgDesktopDark : bgDesktop} alt=""/>
         </div>
 

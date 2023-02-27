@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       screens: {
         xmd: "400px",
+        mdl: "720px"
       },
 
       colors: {
