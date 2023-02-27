@@ -35,7 +35,7 @@ function App() {
 
         <div
           className="lg:w-[600px]  absolute top-[20%] left-0 right-0 flex justify-between lg:left-1/2  lg:translate-x-[-50%]
-        lg:translate-y-[-50%] xmd:left-4 xmd:right-4
+        lg:translate-y-[-50%] xmd:left-4 xmd:right-4 mdl:right-8 mdl:left-8
          px-6"
         >
           <h1
