@@ -36,16 +36,6 @@ function TodoList() {
     }
   };
 
-  // const handleDrag = () => {
-  //   console.log("Dragged");
-  // };
-  // const handleDragOver = (e) => {
-  //   e.preventDefault();
-  //   console.log("Dragging over");
-  // };
-  // const handleDrop = (e) => {
-  //   console.log("Dropped");
-  // };
   return (
     <div
       className="
