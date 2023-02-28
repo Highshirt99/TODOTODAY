@@ -3,6 +3,7 @@ import icon from "../images/icon-cross.svg";
 import check from "../images/icon-check.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+
 import {
   changeTodoStatus,
   clearCompletedTodos,
@@ -35,6 +36,16 @@ function TodoList() {
     }
   };
 
+  // const handleDrag = () => {
+  //   console.log("Dragged");
+  // };
+  // const handleDragOver = (e) => {
+  //   e.preventDefault();
+  //   console.log("Dragging over");
+  // };
+  // const handleDrop = (e) => {
+  //   console.log("Dropped");
+  // };
   return (
     <div
       className="
@@ -42,22 +53,25 @@ function TodoList() {
       "
     >
       <div className="flex flex-col rounded-[5px]  bg-white max-h-[300px] dark:bg-desaturatedBlue">
-        <ul className=" grid grid-cols-1 w-[310px] lg:w-[550px] md:w-[450px] sm:w-[450px] xmd:w-[350px] scrollbar-hide overflow-y-scroll">
-          {todoItems.map((item) => (
+        <ul
+          className=" grid grid-cols-1 w-[310px] lg:w-[550px]
+               md:w-[450px] sm:w-[450px] xmd:w-[350px] scrollbar-hide overflow-y-scroll"
+        >
+          {todoItems.map((item, i) => (
             <motion.li
+              key={item.id}
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{
                 x: { type: "spring", stiffness: 120 },
               }}
-              key={item.id}
               className={`${
                 item.status === "completed"
                   ? "line-through text-gray-400 dark:text-gray-400"
                   : ""
               } todoLi
-`}
-              onClick={() => dispatch(changeTodoStatus(item.id))}
+        `}
+        draggable
             >
               <div
                 className={`${
@@ -65,6 +79,7 @@ function TodoList() {
                     ? "bg-gradient-to-t from-bgFrom to-bgTo"
                     : ""
                 } checkImg`}
+                onClick={() => dispatch(changeTodoStatus(item.id))}
               >
                 {item.status === "completed" ? (
                   <img src={check} alt="" />
@@ -80,6 +95,7 @@ function TodoList() {
             </motion.li>
           ))}
         </ul>
+
         <div
           className=" flex justify-between p-6
          lg:text-sm items-center text-gray-500 h-4 "
@@ -116,7 +132,7 @@ function TodoList() {
           </div>
           <span
             className="span"
-            onClick={() => dispatch(clearCompletedTodos()) }
+            onClick={() => dispatch(clearCompletedTodos())}
           >
             Clear completed
           </span>

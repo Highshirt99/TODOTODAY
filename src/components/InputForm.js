@@ -15,7 +15,11 @@ function InputForm() {
           id: Math.random()
         })
       );
+
+      e.target.value = ""
     }
+
+    
   };
 
   return (

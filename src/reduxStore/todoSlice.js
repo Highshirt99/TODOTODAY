@@ -14,9 +14,9 @@ export const todoSlice = createSlice({
     addTodo: (state, action) => {
       state.todos.unshift({ ...action.payload, status: "active" });
 
-      // state.activeTodos = state.todos.filter(
-      //   (item) => item.status === "active"
-      // );
+      state.activeTodos = state.todos.filter(
+        (item) => item.status === "active"
+      );
      
     },
 

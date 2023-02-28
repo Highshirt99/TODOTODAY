@@ -10,11 +10,11 @@
        @apply  flex justify-start gap-4 min-h-max relative
        items-center  lg:h-12  
        h-4 w-[310px] lg:w-[550px] md:w-[450px] sm:w-[450px] xmd:w-[350px] cursor-pointer dark:text-white
-       p-6 border-b border-b-gray-300 dark:border-b-gray-500
+       p-6 border-b border-b-gray-300 dark:border-b-gray-500 capitalize
     }
 .checkImg{
   @apply  w-5 h-5 rounded-[50%] border
-    border-gray-500 flex justify-center items-center
+    border-gray-500 flex justify-center items-center cursor-pointer
 }
     .span{
         @apply cursor-pointer hover:text-black dark:hover:text-white duration-300
