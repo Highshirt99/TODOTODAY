@@ -23,13 +23,14 @@ function App() {
       document.documentElement.classList.remove("dark");
     }
   }, [darkTheme]);
+  
   return (
-    <div className=" bg-veryLightGrayishBlue dark:bg-darkBlue min-h-screen">
+    <div className="min-h-screen  bg-veryLightGrayishBlue dark:bg-darkBlue">
       <div className="relative">
-        <div className="lg:hidden mdl:hidden md:hidden sm:hidden flex justify-center w-screen object-cover">
+        <div className="flex justify-center object-cover w-screen lg:hidden mdl:hidden md:hidden sm:hidden">
           <img width="100%" src={darkTheme ? bgMobileDark : bgMobile} alt="" />
         </div>
-        <div className="hidden mdl:block sm:block md:block lg:block  w-screen object-cover">
+        <div className="hidden object-cover w-screen mdl:block sm:block md:block lg:block">
           <img src={darkTheme ? bgDesktopDark : bgDesktop} alt=""/>
         </div>
 

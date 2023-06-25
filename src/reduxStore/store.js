@@ -10,7 +10,7 @@ import {
     REGISTER,
   } from 'redux-persist'
 
-  import storage from 'redux-persist/lib/storage';
+import storage from 'redux-persist/lib/storage';
 
 
 import todoReducer from "./todoSlice"
@@ -21,7 +21,7 @@ const persistConfig = {
     storage,
   }
   
-  const persistedReducer = persistReducer(persistConfig, todoReducer)
+const persistedReducer = persistReducer(persistConfig, todoReducer)
   
 
 export const store = configureStore({
