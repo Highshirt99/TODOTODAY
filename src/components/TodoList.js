@@ -47,7 +47,7 @@ function TodoList() {
           className=" grid grid-cols-1 w-[310px] lg:w-[550px]
                md:w-[450px] sm:w-[450px] xmd:w-[350px] scrollbar-hide overflow-y-scroll"
         >
-          {todoItems.map((item, i) => (
+          {todoItems.map((item) => (
             <motion.li
               key={item.id}
               initial={{ x: -20, opacity: 0 }}
@@ -61,7 +61,7 @@ function TodoList() {
                   : ""
               } todoLi
         `}
-        draggable
+              draggable
             >
               <div
                 className={`${
@@ -75,7 +75,10 @@ function TodoList() {
                   <img src={check} alt="" />
                 ) : null}
               </div>
-              {item.title}
+              <p>{item.title}</p>
+              <span className="text-ltvdgb text-sm absolute right-[50px]">
+                {item.dateCreated}
+              </span>
               <img
                 src={icon}
                 alt=""

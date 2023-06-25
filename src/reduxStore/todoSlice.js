@@ -12,12 +12,21 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.todos.unshift({ ...action.payload, status: "active" });
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth()+ 1;
+      const day = date.getDate() 
+
+      const dateCreated = `${day}/${month}/${year}`;
+      state.todos.unshift({
+        ...action.payload,
+        status: "active",
+        dateCreated
+      });
 
       state.activeTodos = state.todos.filter(
         (item) => item.status === "active"
       );
-     
     },
 
     deleteTodo: (state, action) => {
@@ -32,14 +41,13 @@ export const todoSlice = createSlice({
 
     changeTodoStatus: (state, action) => {
       state.todo = state.todos.filter((item) => item.id === action.payload);
-      
+
       if (state.todo[0].status === "active") {
         state.todo[0].status = "completed";
       } else if (state.todo[0].status === "completed") {
         state.todo[0].status = "active";
       }
 
-     
       state.activeTodos = state.todos.filter(
         (item) => item.status === "active"
       );
@@ -47,7 +55,6 @@ export const todoSlice = createSlice({
       state.completedTodos = state.todos.filter(
         (item) => item.status === "completed"
       );
-      
     },
     showAllTodos: (state) => {
       state.todos = state.activeTodos.concat(state.completedTodos);
@@ -59,9 +66,8 @@ export const todoSlice = createSlice({
       state.todos = state.completedTodos;
     },
     clearCompletedTodos: (state) => {
-      state.completedTodos = []
-      state.todos = state.activeTodos
-     
+      state.completedTodos = [];
+      state.todos = state.activeTodos;
     },
   },
 });
