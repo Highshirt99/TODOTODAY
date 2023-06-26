@@ -14,14 +14,16 @@ export const todoSlice = createSlice({
     addTodo: (state, action) => {
       const date = new Date();
       const year = date.getFullYear();
-      const month = date.getMonth()+ 1;
-      const day = date.getDate() 
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
 
-      const dateCreated = `${day}/${month}/${year}`;
+      const created_at = `${day}/${month}/${year}`;
+
       state.todos.unshift({
         ...action.payload,
         status: "active",
-        dateCreated
+        created_at,
+        completed_at: ""
       });
 
       state.activeTodos = state.todos.filter(
@@ -40,12 +42,19 @@ export const todoSlice = createSlice({
     },
 
     changeTodoStatus: (state, action) => {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const completed_at = `${day}/${month}/${year}`;
       state.todo = state.todos.filter((item) => item.id === action.payload);
 
       if (state.todo[0].status === "active") {
         state.todo[0].status = "completed";
+        state.todo[0].completed_at = completed_at;
       } else if (state.todo[0].status === "completed") {
         state.todo[0].status = "active";
+        state.todo[0].completed_at = "";
       }
 
       state.activeTodos = state.todos.filter(
