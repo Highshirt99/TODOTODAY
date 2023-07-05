@@ -24,13 +24,13 @@ function App() {
     }
   }, [darkTheme]);
   return (
-    <div className=" bg-veryLightGrayishBlue dark:bg-darkBlue min-h-screen">
+    <div className="min-h-screen bg-veryLightGrayishBlue dark:bg-darkBlue">
       <div className="relative">
-        <div className="lg:hidden mdl:hidden md:hidden sm:hidden flex justify-center w-screen object-cover">
-          <img width="100%" src={darkTheme ? bgMobileDark : bgMobile} alt="" />
+        <div className="flex justify-center object-cover lg:hidden mdl:hidden md:hidden sm:hidden">
+          <img width= "100%" src={darkTheme ? bgMobileDark : bgMobile} alt="" />
         </div>
-        <div className="hidden mdl:block sm:block md:block lg:block  w-screen object-cover">
-          <img src={darkTheme ? bgDesktopDark : bgDesktop} alt=""/>
+        <div className="hidden object-cover mdl:block sm:block md:block lg:block">
+          <img width= "100%"  src={darkTheme ? bgDesktopDark : bgDesktop} alt=""/>
         </div>
 
         <div
@@ -40,7 +40,7 @@ function App() {
         >
           <h1
             className=" text-white font-bodyFont tracking-[0.2rem]
-          text-base text-[1.5rem] lg:text-[2rem] sm:text-[1.4rem] md:text-[1.4rem]
+           text-[1.5rem] lg:text-[2rem] sm:text-[1.4rem] md:text-[1.4rem] relative right-1 lg:right-6
           font-bold
           "
           >

@@ -42,11 +42,6 @@ function TodoList() {
         font-bodyFont  absolute top-[33%] left-[50%] translate-x-[-50%]
       "
     >
-
-      {/* <div className="flex gap-4 justify-end mr-[3.1rem] dark:text-white mb-2">
-        <small>Created</small>
-        <small className="relative left-1">Completed</small>
-      </div> */}
       <div className="flex flex-col rounded-[5px]  bg-white max-h-[300px] dark:bg-desaturatedBlue">
         <ul
           className=" grid grid-cols-1 w-[350px] lg:w-[600px]
@@ -80,13 +75,15 @@ function TodoList() {
                   <img src={check} alt="" />
                 ) : null}
               </div>
-              <span >{item.title}</span>
-              <span className="dark:text-lightGrayishBlue text-desaturatedBlue  absolute bottom-1 left-[3.8rem] text-[12px]">
+              <span className="scrollbar-hide text-[25px] max-w-[250px] xmd:max-w-[350px] sm:max-w-[470px] lg:max-w-[500px] overflow-y-scroll">{item.title}</span>
+              <span className="dark:text-lightGrayishBlue text-desaturatedBlue  absolute bottom-1 left-[3.8rem] text-[10px]">
                 Created: {item.created_at}
               </span>
-          { item.completed_at &&  <span className="dark:text-lightGrayishBlue text-desaturatedBlue  absolute bottom-1 lg:right-20 right-10 text-[12px]">
-                Completed: {item.completed_at}
-              </span>}
+              {item.completed_at && (
+                <span className="dark:text-lightGrayishBlue text-desaturatedBlue  absolute bottom-1 lg:right-20 right-10 text-[10px]">
+                  Completed: {item.completed_at}
+                </span>
+              )}
               <img
                 src={icon}
                 alt=""
