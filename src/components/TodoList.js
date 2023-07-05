@@ -75,7 +75,7 @@ function TodoList() {
                   <img src={check} alt="" />
                 ) : null}
               </div>
-              <span className="scrollbar-hide text-[25px] max-w-[250px] xmd:max-w-[350px] sm:max-w-[470px] lg:max-w-[500px] overflow-y-scroll">{item.title}</span>
+              <span className="scrollbar-hide text-[25px] max-w-[250px] xmd:max-w-[350px] sm:max-w-[470px] lg:max-w-[500px] md:max-w-[500px] overflow-y-scroll">{item.title}</span>
               <span className="dark:text-lightGrayishBlue text-desaturatedBlue  absolute bottom-1 left-[3.8rem] text-[10px]">
                 Created: {item.created_at}
               </span>
