@@ -37,14 +37,13 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-veryLightGrayishBlue dark:bg-darkBlue">
     <div className={` min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <div className="relative">
         <div className="lg:hidden mdl:hidden md:hidden sm:hidden flex justify-center w-screen object-cover">
-          <img width="100%" src={darkTheme ? bgMobileDark : bgMobile} alt="" />
+          <img width="100%" src={isDarkMode? bgMobileDark : bgMobile} alt="" />
         </div>
         <div className="hidden mdl:block sm:block md:block lg:block  w-screen object-cover">
-          <img src={darkTheme ? bgDesktopDark : bgDesktop} alt=""/>
+          <img src={isDarkMode ? bgDesktopDark : bgDesktop} alt=""/>
         </div>
 
         <div
@@ -53,12 +52,12 @@ function App() {
           px-6"
           >
           <h1
-            className=" text-white font-bodyFont tracking-[0.2rem]
-           text-[1.5rem] lg:text-[2rem] sm:text-[1.4rem] md:text-[1.4rem] relative right-1 lg:right-6
+            className=" text-white font-bodyFont tracking-[0.8rem]
+          text-base text-[1.5rem] lg:text-[2rem] sm:text-[1.4rem] md:text-[1.4rem]
           font-bold
           "
           >
-            TODOTODAY
+            TODO
           </h1>
 
         
