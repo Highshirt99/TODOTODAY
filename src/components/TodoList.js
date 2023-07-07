@@ -44,10 +44,10 @@ function TodoList() {
     >
       <div className="flex flex-col rounded-[5px]  bg-white max-h-[300px] dark:bg-desaturatedBlue">
         <ul
-          className=" grid grid-cols-1 w-[310px] lg:w-[550px]
-               md:w-[450px] sm:w-[450px] xmd:w-[350px] scrollbar-hide overflow-y-scroll"
+          className=" grid grid-cols-1 w-[350px] lg:w-[600px]
+               md:w-[600px] sm:w-[600px] xmd:w-[450px] scrollbar-hide overflow-y-scroll"
         >
-          {todoItems.map((item, i) => (
+          {todoItems.map((item) => (
             <motion.li
               key={item.id}
               initial={{ x: -20, opacity: 0 }}
@@ -61,7 +61,7 @@ function TodoList() {
                   : ""
               } todoLi
         `}
-        draggable
+              draggable
             >
               <div
                 className={`${
@@ -75,23 +75,28 @@ function TodoList() {
                   <img src={check} alt="" />
                 ) : null}
               </div>
-              {item.title}
+              <span className="scrollbar-hide text-[25px] max-w-[250px] xmd:max-w-[350px] sm:max-w-[470px] lg:max-w-[500px] md:max-w-[500px] overflow-y-scroll">{item.title}</span>
+              <span className="dark:text-lightGrayishBlue text-desaturatedBlue  absolute bottom-1 left-[3.8rem] text-[10px]">
+                Created: {item.created_at}
+              </span>
+              {item.completed_at && (
+                <span className="dark:text-lightGrayishBlue text-desaturatedBlue  absolute bottom-1 lg:right-20 right-10 text-[10px]">
+                  Completed: {item.completed_at}
+                </span>
+              )}
               <img
                 src={icon}
                 alt=""
-                className="w-3  absolute right-4 cursor-pointer"
+                className="absolute w-3 cursor-pointer right-4"
                 onClick={() => dispatch(deleteTodo(item.id))}
               />
             </motion.li>
           ))}
         </ul>
 
-        <div
-          className=" flex justify-between p-6
-         lg:text-sm items-center text-gray-500 h-4 "
-        >
+        <div className="flex items-center justify-between h-4 p-6 text-gray-500 lg:text-sm">
           <span>{activeTodoItems.length} items left</span>
-          <div className="lg:flex lg:gap-4 hidden ">
+          <div className="hidden lg:flex lg:gap-4 ">
             <span
               className={`span ${
                 activeButton === "All" ? "text-brightBlue" : ""
@@ -159,7 +164,7 @@ function TodoList() {
         </span>
       </div>
 
-      <div className="text-center mt-10 p-4 text-gray-500">
+      <div className="p-4 mt-10 text-center text-gray-500">
         Drag and drop to reorder list.
       </div>
     </div>

@@ -12,12 +12,23 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.todos.unshift({ ...action.payload, status: "active" });
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+
+      const created_at = `${day}/${month}/${year}`;
+
+      state.todos.unshift({
+        ...action.payload,
+        status: "active",
+        created_at,
+        completed_at: ""
+      });
 
       state.activeTodos = state.todos.filter(
         (item) => item.status === "active"
       );
-     
     },
 
     deleteTodo: (state, action) => {
@@ -31,15 +42,21 @@ export const todoSlice = createSlice({
     },
 
     changeTodoStatus: (state, action) => {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const completed_at = `${day}/${month}/${year}`;
       state.todo = state.todos.filter((item) => item.id === action.payload);
-      
+
       if (state.todo[0].status === "active") {
         state.todo[0].status = "completed";
+        state.todo[0].completed_at = completed_at;
       } else if (state.todo[0].status === "completed") {
         state.todo[0].status = "active";
+        state.todo[0].completed_at = "";
       }
 
-     
       state.activeTodos = state.todos.filter(
         (item) => item.status === "active"
       );
@@ -47,7 +64,6 @@ export const todoSlice = createSlice({
       state.completedTodos = state.todos.filter(
         (item) => item.status === "completed"
       );
-      
     },
     showAllTodos: (state) => {
       state.todos = state.activeTodos.concat(state.completedTodos);
@@ -59,9 +75,8 @@ export const todoSlice = createSlice({
       state.todos = state.completedTodos;
     },
     clearCompletedTodos: (state) => {
-      state.completedTodos = []
-      state.todos = state.activeTodos
-     
+      state.completedTodos = [];
+      state.todos = state.activeTodos;
     },
   },
 });

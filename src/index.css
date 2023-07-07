@@ -8,9 +8,9 @@
 @layer components{
     .todoLi{
        @apply  flex justify-start gap-4 min-h-max relative
-       items-center  lg:h-12  
-       h-4 w-[310px] lg:w-[550px] md:w-[450px] sm:w-[450px] xmd:w-[350px] cursor-pointer dark:text-white
-       p-6 border-b border-b-gray-300 dark:border-b-gray-500 capitalize
+       items-center  lg:h-16  
+       h-[80px] w-[350px] lg:w-[600px]  md:w-[600px] sm:w-[600px] xmd:w-[450px] cursor-pointer dark:text-white
+       p-6 border-b border-b-gray-300 dark:border-b-gray-500 
     }
 .checkImg{
   @apply  w-5 h-5 rounded-[50%] border
