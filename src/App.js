@@ -39,12 +39,12 @@ function App() {
          px-6"
         >
           <h1
-            className=" text-white font-bodyFont tracking-[0.8rem]
+            className=" text-white font-bodyFont tracking-[0.2rem]
           text-base text-[1.5rem] lg:text-[2rem] sm:text-[1.4rem] md:text-[1.4rem]
           font-bold
           "
           >
-            TODO
+            TODOTODAY
           </h1>
 
           <img
