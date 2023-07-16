@@ -34,9 +34,8 @@ function InputForm() {
       <div className="w-5 h-5 rounded-[50%] border border-gray-500 "></div>
       <input
         type="text"
-        className=" 
-        bg-transparent border-none dark:text-white
-       placeholder:font-bodyFont outline-none"
+        className="w-full bg-transparent border-none outline-none dark:text-white placeholder:font-bodyFont"
+       
         placeholder="Create a new todo."
         onChange={(e) => setTask(e.target.value)}
         onKeyDown={handleKeyDown}
